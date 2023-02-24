@@ -7,6 +7,13 @@
     <title>Menu Food</title>
     <link rel="stylesheet" href="./public/style.css" />
     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
@@ -25,9 +32,15 @@
           <button class="drink">Drink</button>
         </div>
       </div>
-
+      <div class="form-group">
+        <input type="text" placeholder="Enter your order here" />
+        <input type="button" value="Search" />
+      </div>
+      <p class="mess">Found <span id="count">0</span> order for you</p>
       <div class="food"></div>
     </div>
+
+    <div class="message"></div>
     <script src="./public/main.js"></script>
   </body>
 </html>

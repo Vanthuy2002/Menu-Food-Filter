@@ -58,6 +58,12 @@ let menuFood = [
 ];
 let food = document.querySelector(".food");
 let btns = document.querySelectorAll("button");
+let btnSearch = document.querySelector("input[type=button]");
+let search = document.querySelector("input[type=text]");
+let msg = "Vui lòng nhập vào ô tìm kiếm";
+let count = document.querySelector("#count");
+const messElement = document.querySelector(".message");
+let time = 4000;
 
 function render(menu) {
   let results = menu.map((item) => {
@@ -79,13 +85,14 @@ function render(menu) {
         </div>
       </div>`;
   });
+  count.textContent = results.length;
   food.innerHTML = results.join("");
 }
 //render ra views
 render(menuFood);
 
 let foodFilter = menuFood;
-
+//Filter with button
 btns.forEach((btn) => {
   btn.addEventListener("click", () => {
     let output = foodFilter.filter((item) => {
@@ -99,3 +106,34 @@ btns.forEach((btn) => {
     }
   });
 });
+
+//Filter with text;
+btnSearch.addEventListener("click", () => {
+  let textFilter = foodFilter.filter((item) => {
+    if (item.type.includes(search.value)) {
+      return item;
+    }
+  });
+  render(textFilter);
+  if (search.value === "") {
+    createNotify(msg, "./public/image/img-1.jpg");
+  }
+});
+
+//noti
+function createNotify(msg, img) {
+  const notyfi = document.createElement("div");
+  notyfi.classList.add("noti");
+  notyfi.innerHTML = `<img src="${img}" alt="" class="noti-image" />
+    <div class="noti-content">
+      <h3 class="noti-title">${msg}</h3>
+      <p class="noti-desc">
+        Lorem ipsum dolor sit amet consec tetur, adipisicing elit. Quisquam
+        dolor sit amet consec
+      </p>
+    </div>`;
+  messElement.appendChild(notyfi);
+  setTimeout(() => {
+    notyfi.remove();
+  }, time);
+}
